@@ -20,7 +20,7 @@ class HomeController extends Controller {
     
 
     public function index() {
-        $this->render('home', ['nome' => 'Bonieky']);
+        echo "Bem vindo , filipe";
     }
 
     

@@ -18,18 +18,25 @@
     <section class="container main">
         <form method="POST" action="<?=$base;?>/cadastro">
         
+        
             <?php if(!empty($flash)): ?>
               <div class="alert alert-danger" role="alert"> <?=$flash?> </div>
-            <?php endif; ?> 
-            <input placeholder="Digite seu nome completo" class="input" type="text" name="name" />    
+            <?php endif; ?>
+            <label for="name">Nome </label>
+            
+            <input placeholder="Digite seu nome completo" class="input" type="text" name="name" id="name"/>
 
-            <input placeholder="Digite seu e-mail" class="input" type="email" name="email" />
+            <label for="email">Email </label>
+            <input placeholder="Digite seu e-mail" class="input" type="email" name="email" id="email" />
 
-            <input placeholder="Digite sua senha" class="input" type="password" name="password" />
+            <label for="password">Senha </label>  
+            <input placeholder="Digite sua senha" class="input" type="password" name="password" id="password"  />
 
+            <label for="birthdate">Data de Nascimento </label>  
             <input placeholder="Digite sua data de nascimento" class="input" type="text" name="birthdate" id="birthdate"/>
 
-            <input class="button" type="submit" value="Fazer cadastro" />
+
+            <input class="button" type="submit" value="Fazer Cadastro" />
 
             <a href="<?=$base;?>/login">Ja possui uma conta? Faça login</a>
         </form>
