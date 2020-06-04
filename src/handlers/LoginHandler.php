@@ -14,6 +14,10 @@ class LoginHandler {
                 $loggedUser->id = $data['id'];
                 $loggedUser->email = $data['email'];
                 $loggedUser->name = $data['name'];
+                $loggedUser->birthdate = $data['birthdate'];
+                $loggedUser->city = $data['city'];
+                $loggedUser->avatar = $data['avatar'];
+
               
                 return $loggedUser;
 
@@ -47,7 +51,7 @@ class LoginHandler {
         return $user ? true : false;
     }
 
-    public  function addUser($name, $email, $password, $birthdate){
+    public  static function addUser($name, $email, $password, $birthdate){
         $hash = password_hash($password, PASSWORD_DEFAULT );
         $token = md5(time().rand(0,9999).time());
 

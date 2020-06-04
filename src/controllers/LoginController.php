@@ -27,7 +27,7 @@ class LoginController extends Controller {
             $token = LoginHandler::verifyLogin($email,$password);
             if($token){
                 $_SESSION['token'] = $token;
-                $this->redirect('/');
+                $this->redirect('/home');
             }
             else{
                 $_SESSION['flash'] = "E-mail e/ou senha incorretos";
@@ -77,7 +77,7 @@ class LoginController extends Controller {
             if(LoginHandler::emailExists($email) === false){
                 $token = LoginHandler::addUser($name,$email,$password,$birthdate);
                 $_SESSION['token'] = $token;
-                $this->redirect('/');
+                $this->redirect('/home');
             }
             else{
                 $_SESSION['flash'] = 'E-mail já cadastrado!';

@@ -20,7 +20,10 @@ class HomeController extends Controller {
     
 
     public function index() {
-        echo "Bem vindo , filipe";
+        $this->render('home',[
+            'loggedUser' => $this->loggedUser
+        ]);
+        
     }
 
     
