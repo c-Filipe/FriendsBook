@@ -22,7 +22,10 @@
 
         }
 
-        public static function getHomeFeed($idUser){
+        public static function getHomeFeed($idUser,$page){
+
+            $perPage = 10;
+
             //1. lista de usuarios que eu sigo.
             $userList = UserRelation::select()->where('user_from',$idUser)->get();
             $users = [];
@@ -37,7 +40,14 @@
             $postList = Post::select()
                 ->where('id_user','in',$users)
                 ->orderBy('created_at','desc')
+                ->page($page, $perPage)
             ->get();
+
+            $total= Post::select()
+                ->where('id_user','in',$users)
+                ->count();
+
+                $pageCount= ceil($total / $perPage);
             
 
             //3.transformar o resultado em objetos dos models.
@@ -78,7 +88,11 @@
 
             
             //5. retornar o resultado.
-            return $posts;
+            return [
+                'posts' => $posts,
+                'pageCount' => $pageCount,
+                'currentPage' => $page
+            ];
         }
     
     }

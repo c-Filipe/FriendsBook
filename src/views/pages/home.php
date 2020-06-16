@@ -8,7 +8,7 @@
             <div class="column pr-5">
                 <?=$render('feed-new', ['loggedUser'=>$loggedUser]);?>
 
-                <?php foreach($feed as $feedItem): ?>
+                <?php foreach($feed['posts'] as $feedItem): ?>
 
                     <?=$render('feed-item', [
                         'data'=>$feedItem,
@@ -16,9 +16,14 @@
                         ]);?>  
 
                 <?php endforeach; ?>    
-
-
-                  
+                <div class="feed-pagination"> 
+                    <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']-1;?>">Anterior</a>
+                    <?php for($q=0; $q<$feed['pageCount']; $q++): ?>
+                        <a class="<?=($q==$feed['currentPage']?'active':'');?>" href="<?=$base;?>/home?page=<?=$q;?>"><?=$q+1;?></a>
+                    <?php endfor ?>
+                    <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']+1;?>">Proxima</a>
+                </div>        
+                      
 
             </div>
             <div class="column side pl-5">
