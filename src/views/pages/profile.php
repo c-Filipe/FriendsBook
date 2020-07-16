@@ -17,7 +17,14 @@
                                     <div class="profile-info-name-text"><?=$user->name;?></div>
                                     <div class="profile-info-location"><?=$user->city;?></div>
                                 </div>
+
                                 <div class="profile-info-data row">
+                                    <?php if($user->id != $loggedUser->id): ?>
+                                        <div class="profile-info-item m-width-20">
+                                            <a href="<?=$base;?>/perfil/<?=$user->id?>/follow" class="button"><?=(!$isFollowing)?'Seguir':'Deixar de Seguir'?>  </a>    
+                                        </div>
+                                    <?php endif ?>
+
                                     <div class="profile-info-item m-width-20">
                                         <div class="profile-info-item-n"><?=count($user->followers);?></div>
                                         <div class="profile-info-item-s">Seguidores</div>
@@ -91,75 +98,6 @@
                                         <?php endif; ?>
                                     <?php endfor; ?>        
                                     
-                                
-                                
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="friend-icon">
-                                    <a href="">
-                                        <div class="friend-icon-avatar">
-                                            <img src="media/avatars/avatar.jpg" />
-                                        </div>
-                                        <div class="friend-icon-name">
-                                            Bonieky
-                                        </div>
-                                    </a>
-                                </div>
-
                             </div>
                         </div>
 
@@ -207,15 +145,18 @@
                                 'data'=>$feedItem,
                                 'loggedUser' => $loggedUser
                             ]);?>  
-                        <?php endforeach; ?>    
-                        <div class="feed-pagination"> 
-                                <a class="button-controller" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$feed['currentPage']-1;?>">Anterior</a>
-                            <?php for($q=0; $q<$feed['pageCount']; $q++): ?>
-                                <a class="<?=($q==$feed['currentPage']?'active':'');?>" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$q;?>"><?=$q+1;?></a>
-                            <?php endfor ?>
-                            <a class="button-controller" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$feed['currentPage']+1;?>">Proxima</a>
-                </div>                      
-                        
+                        <?php endforeach; ?> 
+                        <?php if($feed['total'] > 5 ): ?>        
+                            <div class="feed-pagination"> 
+                                    <a class="button-controller" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$feed['currentPage']-1;?>">Anterior</a>
+                                <?php for($q=0; $q<$feed['pageCount']; $q++): ?>
+                                    <a class="<?=($q==$feed['currentPage']?'active':'');?>" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$q;?>"><?=$q+1;?></a>
+                                <?php endfor ?>
+                                <a class="button-controller" href="<?=$base;?>/perfil/<?=$user->id;?>?page=<?=$feed['currentPage']+1;?>">Proxima</a>
+                            </div>
+                        <?php endif ?>    
+                                                  
+                            
 
 
                     </div>

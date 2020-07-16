@@ -85,7 +85,8 @@
             return [
                 'posts' => $posts,
                 'pageCount' => $pageCount,
-                'currentPage' => $page
+                'currentPage' => $page,
+                'total' => $total
             ];
 
 
@@ -128,7 +129,8 @@
             return [
                 'posts' => $posts,
                 'pageCount' => $pageCount,
-                'currentPage' => $page
+                'currentPage' => $page,
+                'total' => $total
             ];
         }
 

@@ -13,14 +13,16 @@
                         'data'=>$feedItem,
                         'loggedUser' => $loggedUser
                         ]);?>  
-                <?php endforeach; ?>    
-                <div class="feed-pagination"> 
-                    <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']-1;?>">Anterior</a>
-                    <?php for($q=0; $q<$feed['pageCount']; $q++): ?>
-                        <a class="<?=($q==$feed['currentPage']?'active':'');?>" href="<?=$base;?>/home?page=<?=$q;?>"><?=$q+1;?></a>
-                    <?php endfor ?>
-                    <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']+1;?>">Proxima</a>
-                </div>        
+                <?php endforeach; ?>
+                <?php if($feed['total'] > 10 ): ?>
+                    <div class="feed-pagination"> 
+                        <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']-1;?>">Anterior</a>
+                        <?php for($q=0; $q<$feed['pageCount']; $q++): ?>
+                            <a class="<?=($q==$feed['currentPage']?'active':'');?>" href="<?=$base;?>/home?page=<?=$q;?>"><?=$q+1;?></a>
+                        <?php endfor ?>
+                        <a class="button-controller" href="<?=$base;?>/home?page=<?=$feed['currentPage']+1;?>">Proxima</a>
+                    </div>
+                <?php endif ?>           
                       
 
             </div>
