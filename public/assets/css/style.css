@@ -294,7 +294,7 @@ header .head-side {
     text-align: center;
 }
 .profile-info-item a{
-    text-decoration: none;
+    text-decoration: none   ;
 }
 
 .profile-info-item-n {
@@ -349,7 +349,7 @@ header .head-side {
     font-size:14px;
     margin: auto;
     color:#224b7a;
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
 }
