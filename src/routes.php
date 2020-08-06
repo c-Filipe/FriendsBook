@@ -22,12 +22,15 @@ $router->get('/perfil', "ProfileController@index");
 $router->get('/amigos', 'ProfileController@friends');
 $router->get('/fotos', 'ProfileController@photos');
 
+$router->get('/config', 'ConfigController@index');
+$router->post('/config' ,'ConfigController@settingsAction');
+
 
 $router->get('/pesquisa', 'SearchController@index');
 
 $router->get('/sair', "LoginController@logout");
 
-
+$router->get('/ajax/like/{id}', 'AjaxController@like');
 
 
 

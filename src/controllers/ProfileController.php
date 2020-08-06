@@ -130,9 +130,9 @@ class ProfileController extends Controller {
             'user' => $user,
             'isFollowing' => $isFollowing
         ]);
+       
 
     }
-
     
 
 }

@@ -20,6 +20,7 @@ class UserHandler {
                 $loggedUser->birthdate = $data['birthdate'];
                 $loggedUser->city = $data['city'];
                 $loggedUser->avatar = $data['avatar'];
+                $loggedUser->work = $data['work'];
 
               
                 return $loggedUser;
@@ -177,5 +178,56 @@ class UserHandler {
 
         }
         return $users;
+    }
+    public static function updateUser($updateFields,$id){
+        $data = User::select()->where('id',$id)->one();
+
+        if(count($data) > 0 ){
+            $updateFields = new User();
+            $updateFields->id = $data['id'];
+            $updateFields->password = $data['password'];
+            $updateFields->name = $data['name'];
+            $updateFields->birthdate = $data['birtdate'];
+            $updateFields->city= $data['city'];
+            $updateFields->work = $data['work'];
+            $updateFields->avatar = $data['id'];
+            $updateFields->cover = $data['cover'];
+          
+
+        }
+       
+        //Gera o hash da senha, caso a senha mude
+        if(!empty($password)){
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $updateFields = User::update()
+                ->set('password',$hash)
+                ->set('name', $updateFields['name'])
+                ->set('birthdate', $updateFields['birthdate'])
+                ->set('city', $updateFields['city'])
+                ->set('work', $updateFields['work'])
+                ->set('avatar',$updateFields['avatar'])
+                ->set('cover',$updateFields['cover'])
+                ->where('id',$id)
+            ->execute();
+
+            
+        }
+         else {
+            $updateFields =  User::update()
+                ->set('name', $updateFields['name'])
+                ->set('birthdate', $updateFields['birthdate'])
+                ->set('city', $updateFields['city'])
+                ->set('work', $updateFields['work'])
+                ->set('avatar',$updateFields['avatar'])
+                ->set('cover',$updateFields['cover'])
+                ->where('id',$id)
+            ->execute();
+
+            
+            
+        
+        }
+      
+    
     }
 }
